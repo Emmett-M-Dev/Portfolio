@@ -19,12 +19,19 @@ export default function Navbar() {
             </a>
           ))}
         </nav>
-        <a
-          href={site.contact.socials[0].href}
-          className="label hidden text-muted transition-colors hover:text-foreground sm:block"
-        >
-          {site.contact.email}
-        </a>
+        <div className="hidden items-center gap-6 sm:flex">
+          {site.contact.socials.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target={social.href.startsWith("http") ? "_blank" : undefined}
+              rel={social.href.startsWith("http") ? "noreferrer" : undefined}
+              className="label text-muted transition-colors hover:text-foreground"
+            >
+              {social.label}
+            </a>
+          ))}
+        </div>
       </div>
     </header>
   );

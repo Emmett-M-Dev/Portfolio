@@ -28,7 +28,7 @@ export const site = {
   navLinks: [
     { label: "Work", href: "#work" },
     { label: "Education", href: "#education" },
-    { label: "Experience", href: "#experience" },
+    { label: "Work Experience", href: "#experience" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],
@@ -58,6 +58,7 @@ export const site = {
         "MSc dissertation: an agentic pipeline that ingests messy SME data, detects workflow bottlenecks, and proposes next-action fixes under human-in-the-loop approval — LangGraph orchestration with a RAG layer to keep recommendations grounded and auditable.",
       tech: ["Python", "LangGraph", "RAG", "Azure"],
       href: "#",
+      preview: null,
     },
     {
       index: "02",
@@ -66,7 +67,8 @@ export const site = {
       description:
         "Solo full-stack build: relational schema design, a Python prediction engine over thousands of time-series records, and interactive Chart.js visualizations surfacing personalized sleep insights.",
       tech: ["Python", "MySQL", "JavaScript", "Chart.js"],
-      href: "#",
+      href: "https://github.com/Emmett-M-Dev/sleep-tracking-website",
+      preview: { label: "Sleep.io — Landing Page" },
     },
     {
       index: "03",
@@ -75,7 +77,8 @@ export const site = {
       description:
         "End-to-end freelance delivery — requirements through deployment — building front-end and back-end functionality for clients, with AI coding tools folded into the debugging and review workflow.",
       tech: ["Python", "JavaScript"],
-      href: "#",
+      href: "https://foyle.eu",
+      preview: { label: "foyle.eu — Landing Page" },
     },
   ],
   education: {
@@ -170,7 +173,7 @@ export const site = {
     ] as EducationEntry[],
   },
   experience: {
-    label: "03 // experience",
+    label: "03 // work experience",
     entries: [
       {
         index: "01",
@@ -235,10 +238,10 @@ export const site = {
     email: "emmettm785@gmail.com",
     socials: [
       { label: "Email", href: "mailto:emmettm785@gmail.com" },
-      { label: "GitHub", href: "https://github.com/EmmettM785" },
+      { label: "GitHub", href: "https://github.com/Emmett-M-Dev" },
       {
         label: "LinkedIn",
-        href: "https://linkedin.com/in/emmett-murray-230043223",
+        href: "https://www.linkedin.com/in/emmett-murray-230043223/",
       },
     ],
   },
