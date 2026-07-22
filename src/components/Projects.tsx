@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 import { site } from "@/lib/content";
+import { withBasePath } from "@/lib/basePath";
 
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
 
@@ -36,7 +38,7 @@ export default function Projects() {
           {site.projects.map((project) => {
             const isHovered = supportsHover && hovered === project.index;
             const isDimmed = supportsHover && hovered !== null && hovered !== project.index;
-            const hideDetails = isDimmed || (isHovered && Boolean(project.preview));
+            const hideDetails = isDimmed;
 
             return (
               <a
@@ -78,13 +80,25 @@ export default function Projects() {
                         isHovered ? "sm:w-64 sm:opacity-100" : "sm:w-0 sm:opacity-0"
                       }`}
                     >
-                      <div className="flex aspect-video w-64 items-center justify-center border border-dashed border-border bg-foreground/[0.03]">
-                        <p className="label px-2 text-center text-[9px] leading-relaxed text-muted">
-                          {project.preview.label}
-                          <br />
-                          Image Pending
-                        </p>
-                      </div>
+                      {project.preview.image ? (
+                        <div className="relative aspect-video w-64 overflow-hidden border border-border">
+                          <Image
+                            src={withBasePath(project.preview.image)}
+                            alt={project.preview.label}
+                            fill
+                            sizes="256px"
+                            className="object-cover object-top"
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex aspect-video w-64 items-center justify-center border border-dashed border-border bg-foreground/[0.03]">
+                          <p className="label px-2 text-center text-[9px] leading-relaxed text-muted">
+                            {project.preview.label}
+                            <br />
+                            Image Pending
+                          </p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

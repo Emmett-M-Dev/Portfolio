@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { site } from "@/lib/content";
+import { withBasePath } from "@/lib/basePath";
 import ParticleField from "./ParticleField";
+import EmailCopyLink from "./EmailCopyLink";
 
 export default function Hero() {
   const { hero } = site;
@@ -27,7 +29,7 @@ export default function Hero() {
               ))}
             </h1>
 
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-muted">
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
               {hero.subtext}
             </p>
 
@@ -49,7 +51,7 @@ export default function Hero() {
 
           <div className="relative h-56 w-56 shrink-0 overflow-hidden rounded-full border border-border shadow-[0_0_80px_-20px_var(--accent-dim)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
             <Image
-              src="/profile.png"
+              src={withBasePath("/profile.png")}
               alt="Emmett Murray"
               fill
               priority
@@ -59,15 +61,26 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mt-16 grid max-w-xl grid-cols-3 gap-6 border-t border-border pt-8">
-          {hero.stats.map((stat) => (
-            <div key={stat.label}>
-              <p className="font-serif text-2xl sm:text-3xl">{stat.value}</p>
-              <p className="label mt-1 text-[10px] text-muted">
-                {stat.label}
-              </p>
-            </div>
-          ))}
+        <div className="mt-16 flex max-w-xl flex-wrap items-center gap-x-8 gap-y-4 border-t border-border pt-8">
+          {site.contact.socials.map((social) =>
+            social.label === "Email" ? (
+              <EmailCopyLink
+                key={social.label}
+                email={site.contact.email}
+                href={social.href}
+              />
+            ) : (
+              <a
+                key={social.label}
+                href={social.href}
+                target={social.href.startsWith("http") ? "_blank" : undefined}
+                rel={social.href.startsWith("http") ? "noreferrer" : undefined}
+                className="label text-xs text-muted transition-colors hover:text-foreground"
+              >
+                {social.label}
+              </a>
+            )
+          )}
         </div>
       </div>
     </section>

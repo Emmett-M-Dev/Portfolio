@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { site } from "@/lib/content";
+import { withBasePath } from "@/lib/basePath";
 
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
 
@@ -69,7 +70,7 @@ export default function Education() {
                       {entry.index}
                     </span>
                     <h3 className="font-serif text-2xl sm:text-3xl">
-                      {entry.institution}
+                      {entry.credential}
                     </h3>
                   </div>
                   <span className="label text-xs text-muted">
@@ -86,17 +87,36 @@ export default function Education() {
                   }`}
                 >
                   <div className="min-h-0 overflow-hidden">
-                    <div className="grid gap-6 sm:grid-cols-[160px_1fr] sm:gap-10">
+                    <div
+                      className={`grid gap-6 sm:gap-10 ${
+                        entry.imageFit === "contain"
+                          ? "sm:grid-cols-[240px_1fr]"
+                          : "sm:grid-cols-[160px_1fr]"
+                      }`}
+                    >
                       {entry.image ? (
-                        <div className="relative aspect-[3/4] w-full max-w-[160px] overflow-hidden border border-border">
-                          <Image
-                            src={entry.image}
-                            alt={entry.institution}
-                            fill
-                            sizes="160px"
-                            className="object-cover"
-                          />
-                        </div>
+                        entry.imageFit === "contain" ? (
+                          <div className="flex w-full max-w-[240px] items-center">
+                            <Image
+                              src={withBasePath(entry.image)}
+                              alt={entry.institution}
+                              width={480}
+                              height={270}
+                              sizes="240px"
+                              className="h-auto w-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="relative aspect-[3/4] w-full max-w-[160px] overflow-hidden border border-border">
+                            <Image
+                              src={withBasePath(entry.image)}
+                              alt={entry.institution}
+                              fill
+                              sizes="160px"
+                              className="object-cover"
+                            />
+                          </div>
+                        )
                       ) : (
                         <div className="flex aspect-[3/4] w-full max-w-[160px] items-center justify-center border border-dashed border-border">
                           <p className="label text-center text-[10px] leading-relaxed text-muted">
@@ -109,7 +129,7 @@ export default function Education() {
 
                       <div>
                         <p className="text-sm text-muted">
-                          {entry.credential}
+                          {entry.institution}
                         </p>
                         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
                           {entry.description}

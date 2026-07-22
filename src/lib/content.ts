@@ -9,6 +9,21 @@ type EducationYear = {
   link: SectionLink | null;
 };
 
+type ProjectPreview = {
+  label: string;
+  image?: string;
+};
+
+type ProjectEntry = {
+  index: string;
+  tag: string;
+  title: string;
+  description: string;
+  tech: string[];
+  href: string;
+  preview: ProjectPreview | null;
+};
+
 type EducationEntry = {
   index: string;
   institution: string;
@@ -17,6 +32,7 @@ type EducationEntry = {
   description: string;
   modules: string[];
   image: string | null;
+  imageFit: "cover" | "contain";
   dissertationLink: SectionLink | null;
   years: EducationYear[] | null;
 };
@@ -35,19 +51,14 @@ export const site = {
   hero: {
     eyebrow: "// initializing_portfolio.sh",
     headline: [
-      { text: "Building the ", italic: false },
-      { text: "architecture", italic: true },
-      { text: " of intelligent systems.", italic: false },
+      { text: "Your ", italic: false },
+      { text: "direct access", italic: true },
+      { text: " to implementing intelligent AI systems.", italic: false },
     ],
     subtext:
-      "MSc AI graduate and full-stack engineer building tested, observable software — from agentic LLM pipelines grounded with RAG to the backend logic and interfaces around them.",
+      "Hello 👋, I'm Emmett — I build AI automations and full-stack web applications. I have a BSc in Computing and Information Technology from Queen's University Belfast and I'm currently completing my Master's in Artificial Intelligence at Ulster University. Any opportunity to expand my skillset is welcome — just reach out to me by email or LinkedIn (links below).",
     cta: { label: "View Work", href: "#work" },
     secondaryCta: { label: "Get In Touch", href: "#contact" },
-    stats: [
-      { value: "MSc", label: "AI, Ulster Univ. 2026" },
-      { value: "A4Q", label: "Certified SDET" },
-      { value: "Agentic", label: "AI Dissertation Focus" },
-    ],
   },
   projects: [
     {
@@ -68,7 +79,7 @@ export const site = {
         "Solo full-stack build: relational schema design, a Python prediction engine over thousands of time-series records, and interactive Chart.js visualizations surfacing personalized sleep insights.",
       tech: ["Python", "MySQL", "JavaScript", "Chart.js"],
       href: "https://github.com/Emmett-M-Dev/sleep-tracking-website",
-      preview: { label: "Sleep.io — Landing Page" },
+      preview: { label: "Sleep.io — Dashboard", image: "/sleepdashboards.png" },
     },
     {
       index: "03",
@@ -77,15 +88,50 @@ export const site = {
       description:
         "End-to-end freelance delivery — requirements through deployment — building front-end and back-end functionality for clients, with AI coding tools folded into the debugging and review workflow.",
       tech: ["Python", "JavaScript"],
-      href: "https://foyle.eu",
-      preview: { label: "foyle.eu — Landing Page" },
+      href: "https://foyle.eu/",
+      preview: { label: "foyle.eu — Landing Page", image: "/foyle-preview.png" },
     },
-  ],
+  ] as ProjectEntry[],
   education: {
     label: "02 // education",
     entries: [
       {
         index: "01",
+        institution: "Ulster University",
+        credential: "MSc Artificial Intelligence",
+        period: "Sep 2025 — Aug 2026",
+        description:
+          "Designing an agentic AI workflow system for the dissertation — structured intents, tool calls, and validation rules orchestrated with LangGraph, grounded with a RAG layer and human-in-the-loop approval steps.",
+        modules: [
+          "Data Science & Machine Learning",
+          "Deep Learning",
+          "Robotics & AI",
+          "CI/CD & MLOps",
+          "Knowledge Engineering",
+        ],
+        image: "/ulsterlogo.png",
+        imageFit: "contain",
+        dissertationLink: {
+          label: "Read the dissertation project",
+          href: "#work",
+        },
+        years: null,
+      },
+      {
+        index: "02",
+        institution: "North West Regional College, Derry",
+        credential: "A4Q Certified Software Development Engineer in Test",
+        period: "Nov 2024 — Feb 2025",
+        description:
+          "Completed a 12-week professional course covering the SDLC, automated testing (unit and integration), and CI/CD practices.",
+        modules: [],
+        image: "/NWRClogo.png",
+        imageFit: "contain",
+        dissertationLink: null,
+        years: null,
+      },
+      {
+        index: "03",
         institution: "Queen's University Belfast",
         credential: "BSc (Hons) Computing and Information Technology",
         period: "Sep 2020 — Jun 2024",
@@ -99,6 +145,7 @@ export const site = {
           "Cyber Security",
         ],
         image: "/graduation.png",
+        imageFit: "cover",
         dissertationLink: null,
         years: [
           {
@@ -137,39 +184,6 @@ export const site = {
           },
         ],
       },
-      {
-        index: "02",
-        institution: "North West Regional College, Derry",
-        credential: "A4Q Certified Software Development Engineer in Test",
-        period: "Nov 2024 — Feb 2025",
-        description:
-          "Completed a 12-week professional course covering the SDLC, automated testing (unit and integration), and CI/CD practices.",
-        modules: [],
-        image: null,
-        dissertationLink: null,
-        years: null,
-      },
-      {
-        index: "03",
-        institution: "Ulster University",
-        credential: "MSc Artificial Intelligence",
-        period: "Sep 2025 — Aug 2026",
-        description:
-          "Designing an agentic AI workflow system for the dissertation — structured intents, tool calls, and validation rules orchestrated with LangGraph, grounded with a RAG layer and human-in-the-loop approval steps.",
-        modules: [
-          "Data Science & Machine Learning",
-          "Deep Learning",
-          "Robotics & AI",
-          "CI/CD & MLOps",
-          "Knowledge Engineering",
-        ],
-        image: null,
-        dissertationLink: {
-          label: "Read the dissertation project",
-          href: "#work",
-        },
-        years: null,
-      },
     ] as EducationEntry[],
   },
   experience: {
@@ -177,14 +191,13 @@ export const site = {
     entries: [
       {
         index: "01",
-        role: "Systems Support Engineer",
-        company: "CCEA",
-        location: "Belfast, UK",
-        period: "Sep 2022 — Jun 2023",
+        role: "Freelance Web Developer",
+        company: "Self-Employed",
+        location: "Remote",
+        period: "Ongoing",
         bullets: [
-          "Diagnosed and resolved 50+ hardware, software, and network issues weekly in a live environment, working independently from a ticketing system and collaborating with senior engineers on issues affecting 250+ users.",
-          "Automated recurring device setup tasks using PowerShell scripts, and maintained infrastructure to a high standard, including system updates, patch management, and security audits across Linux and Windows environments.",
-          "Documented technical procedures and authored knowledge base articles to improve team-wide troubleshooting and handover.",
+          "Owned client web projects end-to-end from requirements-gathering through to deployment, building front-end and back-end functionality and debugging issues independently.",
+          "Built with Python, JavaScript, and modern web tooling; incorporated AI coding tools into the workflow for debugging and code review.",
         ],
       },
       {
@@ -200,21 +213,43 @@ export const site = {
       },
       {
         index: "03",
-        role: "Freelance Web Developer",
-        company: "Self-Employed",
-        location: "Remote",
-        period: "Ongoing",
+        role: "Systems Support Engineer",
+        company: "CCEA",
+        location: "Belfast, UK",
+        period: "Sep 2022 — Jun 2023",
         bullets: [
-          "Owned client web projects end-to-end from requirements-gathering through to deployment, building front-end and back-end functionality and debugging issues independently.",
-          "Built with Python, JavaScript, and modern web tooling; incorporated AI coding tools into the workflow for debugging and code review.",
+          "Diagnosed and resolved 50+ hardware, software, and network issues weekly in a live environment, working independently from a ticketing system and collaborating with senior engineers on issues affecting 250+ users.",
+          "Automated recurring device setup tasks using PowerShell scripts, and maintained infrastructure to a high standard, including system updates, patch management, and security audits across Linux and Windows environments.",
+          "Documented technical procedures and authored knowledge base articles to improve team-wide troubleshooting and handover.",
         ],
       },
     ],
   },
   about: {
     label: "04 // about",
-    paragraph:
-      "I'm an MSc Artificial Intelligence graduate (Ulster University, 2026) with a full-stack engineering background and hands-on experience building agentic AI systems for my dissertation. Comfortable across the stack in Python — data pipelines, structured validation, backend logic, testing — with practical experience orchestrating LLM agent workflows in LangGraph and grounding outputs with RAG. A4Q-certified in software testing, looking to move beyond notebooks and demos into tested, observable, production-grade AI systems.",
+    intro: "From a birds eye view, I am:",
+    traits: [
+      {
+        label: "A tech optimist",
+        description:
+          "I believe in technological growth — green tech, space-based industries, and specifically AI are all essential industries that will bring a better future.",
+      },
+      {
+        label: "A socialite",
+        description:
+          "I'm great at meeting people, delivering talks, and building relationships. My friends would all refer to me as \"outgoing\", and are often impressed at how easily I strike up conversations with strangers.",
+      },
+      {
+        label: "An opportunist",
+        description:
+          "Although I like to think that my career choices have been deliberate and well-planned, most of my successes involve me stumbling on, and then taking advantage of, short-term opportunities. In simple terms, I act first and figure things out later.",
+      },
+    ],
+    stats: [
+      { value: "MSc", label: "AI, Ulster Univ. 2026" },
+      { value: "A4Q", label: "Certified SDET" },
+      { value: "Agentic", label: "AI Dissertation Focus" },
+    ],
     skills: [
       "Python",
       "LangGraph",
@@ -228,6 +263,41 @@ export const site = {
       "PowerShell",
       "pytest",
       "Git",
+      "Machine Learning",
+      "Deep Learning",
+      "Prompt Engineering",
+      "Vector Databases",
+      "Pandas",
+      "NumPy",
+      "Jupyter",
+      "Data Analysis",
+      "Knowledge Engineering",
+      "Next.js",
+      "React",
+      "Node.js",
+      "Tailwind CSS",
+      "HTML / CSS",
+      "MySQL",
+      "Chart.js",
+      "REST APIs",
+      "Java",
+      "Test Automation",
+      "CI/CD",
+      "MLOps",
+      "Agile / SDLC",
+      "System Administration",
+      "Windows Server",
+      "Cyber Security",
+      "GitHub Actions",
+      "LangChain",
+      "Agentic Workflows",
+      "Human-in-the-Loop Systems",
+      "Relational Database Design",
+      "Time-Series Analysis",
+      "Data Visualization",
+      "API Design",
+      "Requirements Gathering",
+      "Technical Documentation",
     ],
   },
   contact: {
