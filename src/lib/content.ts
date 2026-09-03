@@ -12,6 +12,7 @@ type EducationYear = {
 type ProjectPreview = {
   label: string;
   image?: string;
+  video?: string;
 };
 
 type ProjectEntry = {
@@ -22,6 +23,7 @@ type ProjectEntry = {
   tech: string[];
   href: string;
   preview: ProjectPreview | null;
+  videoUrl?: string;
 };
 
 type EducationEntry = {
@@ -63,13 +65,18 @@ export const site = {
   projects: [
     {
       index: "01",
-      tag: "AGENTIC AI",
-      title: "Agentic Workflow Optimisation",
+      tag: "AGENTIC AI — MSC DISSERTATION",
+      title: "SME Bottleneck Pipeline",
       description:
-        "MSc dissertation: an agentic pipeline that ingests messy SME data, detects workflow bottlenecks, and proposes next-action fixes under human-in-the-loop approval — LangGraph orchestration with a RAG layer to keep recommendations grounded and auditable.",
-      tech: ["Python", "LangGraph", "RAG", "Azure"],
-      href: "#",
-      preview: null,
+        "MSc dissertation research project: an agentic AI pipeline that ingests messy SME operational data, infers schema mappings, detects workflow bottlenecks, and diagnoses fixes via RAG with human-in-the-loop approval gates — complete with a live React & FastAPI management dashboard.",
+      tech: ["Python", "LangGraph", "RAG", "ChromaDB", "FastAPI", "React"],
+      href: "https://github.com/Emmett-M-Dev/sme-bottleneck-pipeline",
+      preview: {
+        label: "SME Bottleneck Pipeline — Demo Video",
+        image: "/sme-bottleneck-poster.jpg",
+        video: "/sme-bottleneck-demo.mp4",
+      },
+      videoUrl: "/sme-bottleneck-demo.mp4",
     },
     {
       index: "02",
@@ -101,7 +108,7 @@ export const site = {
         credential: "MSc Artificial Intelligence",
         period: "Sep 2025 — Aug 2026",
         description:
-          "Designing an agentic AI workflow system for the dissertation — structured intents, tool calls, and validation rules orchestrated with LangGraph, grounded with a RAG layer and human-in-the-loop approval steps.",
+          "Designed and built an agentic AI workflow system for the dissertation — SME operational bottleneck detection, schema inference, and RAG diagnosis with human-in-the-loop approval, orchestrated using Python, LangGraph, and ChromaDB with a FastAPI/React dashboard.",
         modules: [
           "Data Science & Machine Learning",
           "Deep Learning",
@@ -112,7 +119,7 @@ export const site = {
         image: "/ulsterlogo.png",
         imageFit: "contain",
         dissertationLink: {
-          label: "Read the dissertation project",
+          label: "View SME Bottleneck Pipeline & Demo Video",
           href: "#work",
         },
         years: null,
