@@ -65,6 +65,20 @@ export const site = {
   projects: [
     {
       index: "01",
+      tag: "CASE STUDY — FOYLE INTERNATIONAL",
+      title: "Silverwind & Foyle Systems",
+      description:
+        "I audited a language school's admin with its staff, then built Silverwind: one source of truth for programmes, host families, placements and host payments, replacing ~10 spreadsheets and saving 10–25 staff hours a week. Plus a host-recruitment page, AIB bulk payments and the Foyle brand kit.",
+      tech: ["Next.js", "TypeScript", "PostgreSQL", "Azure", "Claude API"],
+      href: "/foyle/",
+      preview: {
+        label: "Silverwind — Accommodation board",
+        image: "/foyle/matching.jpg",
+        video: "/foyle/matching.mp4",
+      },
+    },
+    {
+      index: "02",
       tag: "AGENTIC AI — MSC DISSERTATION",
       title: "SME Bottleneck Pipeline",
       description:
@@ -79,7 +93,7 @@ export const site = {
       videoUrl: "/sme-bottleneck-demo.mp4",
     },
     {
-      index: "02",
+      index: "03",
       tag: "FULL-STACK",
       title: "Sleep.io — Sleep Pattern Prediction",
       description:
@@ -89,7 +103,7 @@ export const site = {
       preview: { label: "Sleep.io — Dashboard", image: "/sleepdashboards.png" },
     },
     {
-      index: "03",
+      index: "04",
       tag: "FREELANCE",
       title: "Client Web Applications",
       description:
@@ -217,6 +231,7 @@ export const site = {
           "Managed student and accommodation records across internal systems, keeping structured data accurate and secure.",
           "Coordinated accommodation logistics and resolved on-site issues independently, keeping each property safe and ready for use.",
         ],
+        link: { label: "Read the Foyle / Silverwind case study", href: "/foyle/" },
       },
       {
         index: "03",

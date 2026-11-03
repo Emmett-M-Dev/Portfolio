@@ -103,7 +103,7 @@ export default function Projects() {
 
                     <h3 className="mt-4 font-serif text-2xl text-balance">
                       <a
-                        href={project.href}
+                        href={project.href.startsWith("/") ? withBasePath(project.href) : project.href}
                         target={project.href.startsWith("http") ? "_blank" : undefined}
                         rel={project.href.startsWith("http") ? "noreferrer" : undefined}
                         className="transition-colors hover:text-accent"
@@ -152,12 +152,12 @@ export default function Projects() {
                       )}
 
                       <a
-                        href={project.href}
+                        href={project.href.startsWith("/") ? withBasePath(project.href) : project.href}
                         target={project.href.startsWith("http") ? "_blank" : undefined}
                         rel={project.href.startsWith("http") ? "noreferrer" : undefined}
                         className="label inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs text-muted transition-all duration-200 hover:border-foreground hover:text-foreground active:scale-[0.98]"
                       >
-                        <span>{project.href.includes("github.com") ? "GitHub Repo" : "View Project"}</span>
+                        <span>{project.href.includes("github.com") ? "GitHub Repo" : project.href.startsWith("/") ? "Read Case Study" : "View Project"}</span>
                         <span aria-hidden="true">&rarr;</span>
                       </a>
                     </div>

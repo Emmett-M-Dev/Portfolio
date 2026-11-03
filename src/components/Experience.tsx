@@ -1,4 +1,5 @@
 import { site } from "@/lib/content";
+import { withBasePath } from "@/lib/basePath";
 
 export default function Experience() {
   const { experience } = site;
@@ -37,6 +38,16 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
+
+              {"link" in entry && entry.link ? (
+                <a
+                  href={withBasePath(entry.link.href)}
+                  className="label mt-5 inline-flex items-center gap-1.5 border border-accent/40 px-3 py-1.5 text-xs text-accent transition-colors hover:bg-accent/10"
+                >
+                  <span>{entry.link.label}</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              ) : null}
             </div>
           ))}
         </div>
